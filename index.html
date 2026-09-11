@@ -214,9 +214,9 @@
 <script>
     // Known Professors Map based on tracker
     const profMap = {
-        "ADPR 201": "Prof. Christopher Andres",
-        "ADPR 203": "Prof. Junephrey Ocampo",
-        "GEED 002": "Prof. McDonald Pascual"
+        "ADPR 201": "Christopher Andres",
+        "ADPR 203": "Junephrey Ocampo",
+        "GEED 002": "McDonald Pascual"
     };
 
     const targetCsvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRFXLJEX1ziixx8c0vzBOcGB6ucE8mMnYmdjARlX791mL-nHGd7bW2072hRz5W2T401fWtCpnTzUy00/pub?gid=2043487899&single=true&output=csv';
@@ -279,7 +279,6 @@
                 const confirmed = row[confirmedCol] ? row[confirmedCol].trim().toLowerCase() : '';
                 const link = row[linkCol] ? row[linkCol].trim() : '';
                 
-                // Get Professor name from sheet if available, otherwise check profMap or set TBD
                 let prof = (profCol !== -1 && row[profCol]) ? row[profCol].trim() : '';
                 if (!prof && profMap[code]) {
                     prof = profMap[code];
@@ -337,7 +336,7 @@
     function renderUpcoming(list) {
         const container = document.getElementById('upcoming-container');
         if (list.length === 0) {
-            container.innerHTML = `<div class="empty-card">No confirmed classes scheduled for the upcoming week.</div>`;
+            container.innerHTML = `<div class="empty-card">No confirmed classes scheduled for upcoming sessions.</div>`;
         } else {
             container.innerHTML = list.map(createCard).join('');
         }
@@ -367,9 +366,9 @@
 
     function renderFallback() {
         const fallbackToday = [
-            { code: "ADPR 201", desc: "Basic Photography Applied in Advertising", prof: "Prof. Christopher Andres", start: "8:15 AM", end: "9:00 AM", cycle: "Cycle 1", link: "https://meet.google.com/bkh-iefc-eog" },
-            { code: "COMM 002", desc: "Communication and Media Theories", prof: "Prof. TBD", start: "9:00 AM", end: "10:30 AM", cycle: "Cycle 1", link: "" },
-            { code: "ADPR 204", desc: "Multimedia Production", prof: "Prof. TBD", start: "3:00 PM", end: "4:30 PM", cycle: "Cycle 2", link: "" }
+            { code: "ADPR 201", desc: "Basic Photography Applied in Advertising", prof: "Christopher Andres", start: "8:15 AM", end: "9:00 AM", cycle: "Cycle 1", link: "https://meet.google.com/bkh-iefc-eog" },
+            { code: "COMM 002", desc: "Communication and Media Theories", prof: "TBD", start: "9:00 AM", end: "10:30 AM", cycle: "Cycle 1", link: "" },
+            { code: "ADPR 204", desc: "Multimedia Production", prof: "TBD", start: "3:00 PM", end: "4:30 PM", cycle: "Cycle 2", link: "" }
         ];
         renderToday(fallbackToday);
         renderUpcoming([]);
